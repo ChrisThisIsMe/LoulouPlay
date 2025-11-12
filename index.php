@@ -32,6 +32,7 @@ $page_title = 'Accueil';
     <meta name="twitter:image" content="https://loulouplay.com/img/mascotte-hibou.png">
     <title><?php echo SITE_NAME; ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="<?php echo PATH_IMG; ?>mascotte-hibou.png">
     <style>
         * {
             margin: 0;
