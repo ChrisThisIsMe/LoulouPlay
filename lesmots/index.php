@@ -1,3 +1,7 @@
+<?php
+// Chargement de la configuration
+require_once '../config.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -146,6 +150,12 @@
             padding: 30px;
             border-radius: 15px;
             color: #2C3E50;
+        }
+        
+        /* Assure l'affichage du footer au-dessus */
+        footer {
+            position: relative;
+            z-index: 2000;
         }
     </style>
 </head>

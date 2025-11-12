@@ -136,6 +136,7 @@ if (empty($_SESSION[$cle_paquet])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entraînement - <?php echo $nom_affiche; ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../includes/common-styles.css">
     <style>
         body { 
             font-family: 'Fredoka', Arial, sans-serif; 
@@ -299,47 +300,6 @@ if (empty($_SESSION[$cle_paquet])) {
             }
         }
         
-        .mascotte-coin {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 80px;
-            height: auto;
-            z-index: 1000;
-            animation: flotte 3s ease-in-out infinite;
-            pointer-events: none;
-        }
-        
-        @keyframes flotte {
-            0%, 100% { transform: translateY(0px) rotate(-5deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
-        }
-        
-        @media (max-width: 1024px) {
-            .mascotte-coin {
-                width: 70px;
-                height: auto;
-            }
-        }
-        
-        @media (max-width: 750px) {
-            .mascotte-coin {
-                width: 55px;
-                height: auto;
-                bottom: 10px;
-                right: 10px;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .mascotte-coin {
-                width: 45px;
-                height: auto;
-                bottom: 8px;
-                right: 8px;
-            }
-        }
-        
         .debug-modal {
             display: none;
             position: fixed;
@@ -417,7 +377,7 @@ if (empty($_SESSION[$cle_paquet])) {
 <div class="page-wrapper">
     <?php include '../includes/nav.php'; ?>
     
-    <img src="../img/mascotte-hibou.png" alt="Hibou Loulou" class="mascotte-coin">
+    <img src="../img/mascotte-hibou.png" alt="Hibou Loulou" class="mascotte-flottante">
 
     <div class="conteneur">
         <h1>🎯 <?php echo htmlspecialchars($nom_affiche); ?></h1>
