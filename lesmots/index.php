@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apprendre les mots - Choisir une catégorie</title>
-    <link rel="icon" type="image/png" href="img/mascotte-hibou.png">
+    <link rel="icon" type="image/png" href="../img/mascotte-hibou.png">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Apprendre les mots - Jeu éducatif pour enfants">
@@ -154,7 +154,7 @@
         <?php include '../includes/nav.php'; ?>
             
         <div class="mascotte-conteneur">
-            <img src="img/mascotte-hibou.png" alt="Mascotte Hibou">
+            <img src="../img/mascotte-hibou.png" alt="Mascotte Hibou">
         </div>
         
         <div class="bulle-dialogue">
