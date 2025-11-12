@@ -194,6 +194,7 @@ if (empty($_SESSION[$cle_paquet])) {
             word-wrap: break-word;
             font-weight: 600;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            text-align: center;
         }
         
         .bouton-actions { 

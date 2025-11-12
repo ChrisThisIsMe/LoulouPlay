@@ -29,7 +29,7 @@ $page_title = 'Conditions Générales d\'Utilisation';
         
         body { 
             font-family: 'Fredoka', Arial, sans-serif; 
-            background: linear-gradient(180deg, #E8EAF6 0%, #C5CAE9 100%);
+            background: linear-gradient(180deg, #667eea 0%, #C5CAE9 100%);
             min-height: 100vh;
             padding: 20px;
         }

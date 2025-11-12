@@ -3,7 +3,26 @@
  * Footer global du site Loulou Play
  */
 ?>
-   <footer style="
+<style>
+    .footer-copyright {
+        margin: 0;
+        line-height: 1.8;
+    }
+    
+    .footer-separator {
+        display: inline;
+    }
+    
+    /* Sur mobile et tablette : retour à la ligne */
+    @media (max-width: 1024px) {
+        .footer-separator {
+            display: block;
+            margin: 10px 0;
+        }
+    }
+</style>
+
+<footer style="
     max-width: 1200px;
     margin: 40px auto 0;
     background: rgba(255, 255, 255, 0.95);
@@ -16,8 +35,16 @@
     font-size: 1em;
     font-weight: 600;
 ">
-    <p style="margin: 0;">
-        © <?php echo date('Y'); ?> Loulou Play - Tous droits réservés
+    <p class="footer-copyright">
+        © <?php echo date('Y'); ?> Loulou Play · 
+        <span class="footer-separator">
+            <a href="<?php echo PATH_ROOT; ?>cgu.php" 
+               style="color: #667eea; text-decoration: none; font-weight: 700;"
+               onmouseover="this.style.textDecoration='underline';" 
+               onmouseout="this.style.textDecoration='none';">
+               Conditions Générales d'Utilisation
+            </a>
+        </span>
     </p>
 </footer>
 
