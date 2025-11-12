@@ -34,6 +34,8 @@
     color: #5E35B1;
     font-size: 1em;
     font-weight: 600;
+    position: relative;       /* +++ */
+    z-index: 2000;            /* +++ au-dessus des décos */
 ">
     <p class="footer-copyright">
         © <?php echo date('Y'); ?> Loulou Play · 

@@ -1,0 +1,25 @@
+/* === MASCOTTE FLOTTANTE (coin bas-droite) === */
+.mascotte-flottante {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 120px;
+    height: auto;
+    animation: flotte 4s ease-in-out infinite;
+    filter: drop-shadow(0 6px 15px rgba(0,0,0,0.3));
+    z-index: 1000;
+}
+
+@keyframes flotte {
+    0%, 100% { transform: translateY(0px) rotate(-8deg); }
+    50% { transform: translateY(-20px) rotate(8deg); }
+}
+
+@media (max-width: 750px) {
+    .mascotte-flottante {
+        width: 80px;
+        height: auto;
+        bottom: 20px;
+        right: 20px;
+    }
+}

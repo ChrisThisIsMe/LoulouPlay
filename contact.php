@@ -162,6 +162,7 @@ $form_timestamp = time();
 
     <title><?php echo $page_title . ' - ' . SITE_NAME; ?></title>
     <link rel="icon" type="image/png" href="<?php echo PATH_IMG; ?>mascotte-hibou.png">
+    <link rel="stylesheet" href="<?php echo PATH_ROOT; ?>includes/common-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -396,29 +397,6 @@ $form_timestamp = time();
             transform: translateY(-1px);
         }
         
-        .mascotte-flottante {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 80px;
-            height: auto;
-            animation: flotte-coin 4s ease-in-out infinite;
-            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.3));
-            z-index: 1000;
-        }
-        
-        @keyframes flotte-coin {
-            0%, 100% { transform: translateY(0px) rotate(-5deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
-        }
-        
-        @media (max-width: 1024px) {
-            .mascotte-flottante {
-                width: 70px;
-                height: auto;
-            }
-        }
-        
         @media (max-width: 750px) {
             body {
                 padding: 15px;
@@ -466,22 +444,6 @@ $form_timestamp = time();
             .btn-submit {
                 font-size: 1.2em;
                 padding: 18px;
-            }
-            
-            .mascotte-flottante {
-                width: 55px;
-                height: auto;
-                bottom: 10px;
-                right: 10px;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .mascotte-flottante {
-                width: 45px;
-                height: auto;
-                bottom: 8px;
-                right: 8px;
             }
         }
     </style>

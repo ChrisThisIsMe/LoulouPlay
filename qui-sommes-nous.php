@@ -17,6 +17,7 @@ $page_title = 'Qui sommes-nous';
     <meta name="description" content="Découvrez l'histoire de Loulou Play, un site éducatif gratuit créé par un papa pour aider sa fille et tous les enfants avec un retard de langage.">
     <title><?php echo $page_title . ' - ' . SITE_NAME; ?></title>
     <link rel="icon" type="image/png" href="<?php echo PATH_IMG; ?>mascotte-hibou.png">
+    <link rel="stylesheet" href="<?php echo PATH_ROOT; ?>includes/common-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -102,17 +103,6 @@ $page_title = 'Qui sommes-nous';
             font-weight: 600;
         }
         
-        .mascotte-flottante {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 120px;
-            height: 120px;
-            animation: flotte 4s ease-in-out infinite;
-            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.3));
-            z-index: 1000;
-        }
-        
         @keyframes flotte {
             0%, 100% { transform: translateY(0px) rotate(-8deg); }
             50% { transform: translateY(-20px) rotate(8deg); }
@@ -137,13 +127,6 @@ $page_title = 'Qui sommes-nous';
             
             .conteneur-principal p {
                 font-size: 1.1em;
-            }
-            
-            .mascotte-flottante {
-                width: 80px;
-                height: 80px;
-                bottom: 20px;
-                right: 20px;
             }
         }
     </style>
