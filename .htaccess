@@ -1,0 +1,10 @@
+# Allow WhatsApp and Telegram bots
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Allow WhatsApp Bot
+  RewriteCond %{HTTP_USER_AGENT} "WhatsApp" [NC,OR]
+  # Allow Telegram Bot
+  RewriteCond %{HTTP_USER_AGENT} "TelegramBot" [NC]
+  RewriteRule .* - [L]
+</IfModule>

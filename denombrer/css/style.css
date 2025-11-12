@@ -1,0 +1,128 @@
+/* Réinitialisation de base et police */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f7f6;
+    padding: 10px;
+}
+
+#game-container {
+    width: 100%;
+    max-width: 900px; /* Conteneur plus large sur desktop */
+    text-align: center;
+    padding: 30px 40px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+h1 {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* NOUVELLE GRILLE pour les animaux */
+#objets-container {
+    display: grid;
+    /* Crée des colonnes flexibles d'au moins 80px */
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    justify-items: center; /* Centre les animaux dans leurs cases */
+    gap: 25px; /* Plus d'espace entre les animaux */
+    padding: 30px;
+    min-height: 250px;
+    border: 2px dashed #d0d0d0;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+/* Taille des animaux augmentée pour desktop */
+.objet {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Le style de l'image (ancien .objet) */
+.objet img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* S'assure que l'image n'est pas déformée */
+}
+
+/* Conteneur des options de réponse */
+#options-reponse {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Jetons de réponse plus grands sur desktop */
+.jeton {
+    width: 75px;
+    height: 75px;
+    background-color: #3498db;
+    color: white;
+    font-size: 2.2em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.jeton:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.jeton-selectionne {
+    background-color: #2980b9;
+    border: 4px solid #f1c40f;
+}
+
+#feedback {
+    font-size: 1.8em;
+    font-weight: bold;
+    min-height: 50px;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Adaptation pour les petits écrans (mobile) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2em;
+    }
+    #objets-container {
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+        gap: 15px;
+        min-height: 180px;
+        padding: 15px;
+    }
+    .objet {
+        width: 50px;
+        height: 50px;
+    }
+    .jeton {
+        width: 55px;
+        height: 55px;
+        font-size: 1.8em;
+    }
+}

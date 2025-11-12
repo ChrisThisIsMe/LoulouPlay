@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/doudou3.png">
+    <meta name="description" content="LoulouPlay propose des jeux ludiques et éducatifs pour éveiller la curiosité, la créativité et le plaisir d’apprendre des enfants.">
+    <meta property="og:title" content="Puzzle pour les petits">
+    <meta property="og:description" content="Des puzzles simples à glisser-déposer pour les tout-petits. Gratuit, sans pub.">
+    <meta property="og:url" content="https://loulouplay.com/">
+    <meta property="og:image" content="https://loulouplay.com/images/social_card/loulouplay.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LoulouPlay">
+    <title>Puzzle pour les petits</title>
+    <link rel="stylesheet" href="style.css?v=14">
+</head>
+<body>
+    <header>
+        <h1>Puzzle pour les petits</h1>
+        <p class="instructions">Glisse les pièces pour reconstituer l'image</p>
+    </header>
+
+    <div id="écran-sélection" class="écran-sélection">
+        <h2>Choisis ton puzzle préféré !</h2>
+        <div class="chargement">Chargement des puzzles...</div>
+        <div class="grille-miniatures"></div>
+    </div>
+
+    <div id="écran-jeu" class="écran-jeu" style="display:none;">
+        <div class="barre-outils">
+            <button id="btn-retour">← Retour</button>
+            <span id="compteur">0/6 pièces</span>
+            <button id="btn-mélanger">Mélanger</button>
+        </div>
+        <div class="zones-jeu" style="position: relative;">
+            <canvas id="canvas-pieces" width="450" height="650"></canvas>
+            <canvas id="canvas-résolution" width="400" height="600"></canvas>
+            <canvas id="canvas-overlay" width="900" height="650" style="position: absolute; left: 0; top: 0; pointer-events: none;"></canvas>
+        </div>
+        <div id="message-victoire" class="message-victoire" style="display:none;">
+            🎉 Bravo ! Tu as terminé le puzzle ! 🎉
+        </div>
+    </div>
+
+    <script src="script.js?v=50"></script>
+</body>
+</html>
