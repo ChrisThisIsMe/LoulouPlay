@@ -25,6 +25,23 @@ if (!is_dir($chemin_base_images)) {
 // === ÉTAPE 1 : DÉMARRER LA SESSION ===
 session_start();
 
+// === CONFIGURATION DU MODE DEBUG ===
+// On vérifie si la constante globale est définie, sinon on met à false par défaut.
+// Tu peux mettre cette ligne à "true" manuellement ici si tu veux forcer le debug
+$MODE_DEBUG = defined('DEBUG_MODE') ? DEBUG_MODE : false; 
+// $MODE_DEBUG = true; // Décommente cette ligne pour forcer le mode debug temporairement
+
+// === CODE DE NETTOYAGE FORCÉ (Uniquement en DEBUG) ===
+// Si on clique sur le lien de reset ET qu'on est en debug
+if ($MODE_DEBUG && isset($_GET['reset_cache'])) {
+    unset($_SESSION['paquet_' . $categorie]);
+    unset($_SESSION['index_' . $categorie]);
+    unset($_SESSION['timestamp_' . $categorie]);
+    // On recharge la page proprement sans le paramètre reset_cache
+    header("Location: jeu.php?cat=" . $categorie);
+    exit;
+}
+
 // --- Fonction pour construire et mélanger le paquet ---
 function creer_paquet_melange($repetitions, $fichier_map, $chemin_base_images) {
     $mots_de_base = [];
@@ -62,22 +79,33 @@ function creer_paquet_melange($repetitions, $fichier_map, $chemin_base_images) {
     return $paquet_complet;
 }
 
-// === ÉTAPE 2 : GESTION DE LA SESSION ===
+// === ÉTAPE 2 : GESTION DE LA SESSION ET DU HOT-RELOAD ===
 $cle_paquet = 'paquet_' . $categorie;
 $cle_index = 'index_' . $categorie;
 $cle_dernier_mot = 'dernier_mot_' . $categorie;
+$cle_timestamp = 'timestamp_' . $categorie;
 
-if (empty($_SESSION[$cle_paquet]) || !isset($_SESSION[$cle_index]) || $_SESSION[$cle_index] >= count($_SESSION[$cle_paquet])) {
+// On récupère la date de dernière modification du fichier CSV
+$date_modif_csv = file_exists($fichier_map) ? filemtime($fichier_map) : 0;
+
+$forcer_rechargement = false;
+
+// Hot-reload automatique
+if (isset($_SESSION[$cle_timestamp]) && $_SESSION[$cle_timestamp] < $date_modif_csv) {
+    $forcer_rechargement = true;
+    if ($MODE_DEBUG) echo "<div style='position:fixed;top:0;left:0;background:red;color:white;padding:5px;z-index:9999'>CSV Modifié ! Rechargement...</div>";
+}
+
+if ($forcer_rechargement || empty($_SESSION[$cle_paquet]) || !isset($_SESSION[$cle_index]) || $_SESSION[$cle_index] >= count($_SESSION[$cle_paquet])) {
     
     $repetitions_par_categorie = 5;
     
     $_SESSION[$cle_paquet] = creer_paquet_melange($repetitions_par_categorie, $fichier_map, $chemin_base_images); 
     $_SESSION[$cle_index] = 0;
     $_SESSION[$cle_dernier_mot] = null; 
+    
+    $_SESSION[$cle_timestamp] = $date_modif_csv;
 }
-
-// === MODE DEBUG ===
-$MODE_DEBUG = true; // Mettre à false en production
 
 // === MODE DEBUG : Recherche de mot spécifique ===
 if ($MODE_DEBUG && !empty($_GET['debug_mot'])) {
@@ -221,6 +249,7 @@ if (empty($_SESSION[$cle_paquet])) {
             box-sizing: border-box;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             display: inline-block;
+            text-align: center;
         }
         
         .vocaliser { 
@@ -300,6 +329,7 @@ if (empty($_SESSION[$cle_paquet])) {
             }
         }
         
+        /* CSS POUR LE MODE DEBUG */
         .debug-modal {
             display: none;
             position: fixed;
@@ -396,6 +426,13 @@ if (empty($_SESSION[$cle_paquet])) {
             <div class="image-container">
                 <img src="<?php echo $chemin_image; ?>" alt="Image du mot" class="image-mot">
             </div>
+            
+            <?php if ($MODE_DEBUG): ?>
+                <div style="background:yellow; color:black; padding:10px; font-weight:bold; text-align:center; border-radius:10px; margin-bottom:10px;">
+                    🔧 DEBUG Syllabes : [ <?php echo $syllabes_a_vocaliser; ?> ]
+                </div>
+            <?php endif; ?>
+
             <div class="texte-mot">
                 <?php echo htmlspecialchars($mot); ?>
             </div>
@@ -426,11 +463,11 @@ if (empty($_SESSION[$cle_paquet])) {
         document.addEventListener('DOMContentLoaded', function () {
             window.speechSynthesis.onvoiceschanged = function () {
                 if (!('speechSynthesis' in window)) {
-                    alert('La synthèse vocale n\'est pas disponible sur ce navigateur. Veuillez privilégier Google Chrome ou Microsoft Edge.');
+                    // alert('La synthèse vocale n\'est pas disponible sur ce navigateur. Veuillez privilégier Google Chrome ou Microsoft Edge.');
                 } else {
                     var voices = window.speechSynthesis.getVoices();
                     if (voices.length === 0) {
-                        alert('La synthèse vocale est inactive ou sans voix sur ce navigateur. Veuillez privilégier Google Chrome ou Microsoft Edge.');
+                        // alert('La synthèse vocale est inactive ou sans voix sur ce navigateur. Veuillez privilégier Google Chrome ou Microsoft Edge.');
                     }
                 }
             };
@@ -517,6 +554,10 @@ if (empty($_SESSION[$cle_paquet])) {
     </script>
 
     <?php if ($MODE_DEBUG): ?>
+    <a href="?cat=<?php echo $categorie; ?>&reset_cache=1" class="bouton-actions" style="background: #ff4757; color: white; text-decoration:none; padding: 18px 30px; border-radius: 15px; display:inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin-top: 20px;">
+        🔄 RECHARGER CSV
+    </a>
+    
     <div class="debug-overlay" id="debugOverlay" onclick="fermerDebugModal()"></div>
     <div class="debug-modal" id="debugModal">
         <h3>🔧 Mode Développeur</h3>
